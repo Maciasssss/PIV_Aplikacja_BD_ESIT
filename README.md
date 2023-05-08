@@ -2,7 +2,7 @@
 ESIT = Elektroniczny System Informacji Turystycznej
 ![Opis alternatywny](/Schemat_Bazy_Danych_ESIT.png)
 ## OPIS PROGRAMU
-Etap 1.(folder-Models)Zdefiniowane zostały poszczególne klasy opisujące kolumny w tabellach:
+Etap 1.(folder-Models)Zdefiniowane zostały poszczególne klasy opisujące kolumny w tabellach.:
 
 -Oferta Turystyczna
 
