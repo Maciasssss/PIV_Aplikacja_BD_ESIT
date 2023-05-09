@@ -23,7 +23,7 @@ namespace Projekt_PIV_BazaDanych_ESIT.Models
         public virtual DbSet<Opinie> Wiadomości { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-1M6ATAN;Database=ESIT;Integrated Security=True;Connect Timeout=30;Encrypt=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-15TG0O;Database=ESIT;Integrated Security=True;Connect Timeout=30;Encrypt=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False;TrustServerCertificate=True;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
