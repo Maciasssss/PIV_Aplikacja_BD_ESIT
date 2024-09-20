@@ -1,90 +1,111 @@
 # PIV_Aplikacja_BD_ESIT
 
-**ESIT** - Elektroniczny System Informacji Turystycznej
+**ESIT** - Electronic Tourist Information System
 
-## Spis Treści
+## Table of Contents
 
-- [Opis Programu](#opis-programu)
-- [Funkcjonalności](#funkcjonalności)
-- [Model Danych](#model-danych)
-  - [Etap 1: Definicja Klas Modeli](#etap-1-definicja-klas-modeli)
-  - [Etap 1.2: Nadanie Właściwości](#etap-12-nadanie-właściwości)
-  - [Etap 2: Definiowanie Relacji Między Tabelami](#etap-2-definiowanie-relacji-między-tabelami)
-  - [Etap 3: Konfiguracja Kontekstu Bazy Danych](#etap-3-konfiguracja-kontekstu-bazy-danych)
-  - [Etap 4: Migracje](#etap-4-migracje)
-- [Technologie](#technologie)
-- [Kontakt](#kontakt)
-
----
-
-## Opis Programu
-
-Elektroniczny System Informacji Turystycznej (ESIT) to aplikacja umożliwiająca zarządzanie ofertami turystycznymi, rezerwacjami, opiniami oraz komunikację między użytkownikami a administracją. Projekt skupia się na efektywnym modelowaniu danych oraz zarządzaniu relacjami między nimi.
+- [Program Overview](#program-overview)
+- [Features](#features)
+- [Data Model](#data-model)
+  - [Stage 1: Definition of Model Classes](#stage-1-definition-of-model-classes)
+  - [Stage 1.2: Setting Properties](#stage-12-setting-properties)
+  - [Stage 2: Defining Relationships Between Tables](#stage-2-defining-relationships-between-tables)
+  - [Stage 3: Configuration of Database Context](#stage-3-configuration-of-database-context)
+  - [Stage 4: Migrations](#stage-4-migrations)
+- [Technologies](#technologies)
+- [Environment Setup](#environment-setup)
+- [Migrations](#migrations)
+- [Running the Application](#running-the-application)
+- [Contact](#contact)
 
 ---
 
-## Funkcjonalności
+## Program Overview
 
-- **Zarządzanie Ofertami Turystycznymi**: Dodawanie, edycja i usuwanie ofert.
-- **Rezerwacje**: Użytkownicy mogą dokonywać rezerwacji wybranych ofert.
-- **Opinie**: Możliwość dodawania opinii do ofert turystycznych.
-- **Wiadomości**: Komunikacja między użytkownikami a administracją w kontekście rezerwacji.
-- **Zarządzanie Użytkownikami**: Rejestracja, logowanie oraz edycja profilu.
+The Electronic Tourist Information System (ESIT) is an application that enables managing tourist offers, reservations, reviews, and communication between users and administration. The project focuses on efficient data modeling and managing relationships between them.
 
 ---
 
-## Model Danych
+## Features
 
-### Etap 1: Definicja Klas Modeli
-
-Zdefiniowano klasy reprezentujące tabele w bazie danych:
-
-- **OfertaTurystyczna**
-- **Użytkownicy**
-- **Wiadomości**
-- **Opinie**
-- **Rezerwacja**
-
-### Etap 1.2: Nadanie Właściwości
-
-- Określono klucze główne i obce.
-- Ustawiono wymagalność poszczególnych pól (np. czy wartość jest wymagana).
-
-### Etap 2: Definiowanie Relacji Między Tabelami
-
-- **Oferta Turystyczna**:
-  - Może mieć wiele **Rezerwacji**.
-  - Może mieć wiele **Opinii**.
-- **Rezerwacja**:
-  - Odnosi się do jednej **Oferty Turystycznej**.
-  - Odnosi się do jednego **Użytkownika**.
-- **Użytkownik**:
-  - Może złożyć wiele **Rezerwacji**.
-  - Może wysłać wiele **Wiadomości**.
-- **Wiadomość**:
-  - Odnosi się do jednej **Rezerwacji**.
-  - Odnosi się do jednego **Użytkownika**.
-- **Opinia**:
-  - Dotyczy jednej **Oferty Turystycznej**.
-
-### Etap 3: Konfiguracja Kontekstu Bazy Danych
-
-*(Plik: `ESITContext` w folderze `Models`)*
-
-- Dziedziczenie po klasie `DbContext`.
-- Określono właściwości `DbSet` dla każdej klasy modelu danych.
-- Skonfigurowano połączenie z bazą danych.
-- W metodzie `OnModelCreating()` zdefiniowano niestandardowe ustawienia dla klas i relacji.
-
-### Etap 4: Migracje
-
-- Przeprowadzono migracje w celu utworzenia schematu bazy danych zgodnego z modelem danych.
+- **Managing Tourist Offers**: Adding, editing, and deleting offers.
+- **Reservations**: Users can make reservations for selected offers.
+- **Reviews**: Users can add reviews to tourist offers.
+- **Messages**: Communication between users and administration in the context of reservations.
+- **User Management**: Registration, login, and profile editing.
 
 ---
 
-## Technologie
+## Data Model
 
-- **Język Programowania**: C#
-- **Framework**: .NET Framework 
+### Stage 1: Definition of Model Classes
+
+Classes representing the database tables were defined:
+
+- **TouristOffer**
+- **Users**
+- **Messages**
+- **Reviews**
+- **Reservation**
+
+### Stage 1.2: Setting Properties
+
+- Primary and foreign keys were defined.
+- The requirement for specific fields (e.g., whether a value is required) was set.
+
+### Stage 2: Defining Relationships Between Tables
+
+- **Tourist Offer**:
+  - Can have multiple **Reservations**.
+  - Can have multiple **Reviews**.
+- **Reservation**:
+  - Refers to one **Tourist Offer**.
+  - Refers to one **User**.
+- **User**:
+  - Can make multiple **Reservations**.
+  - Can send multiple **Messages**.
+- **Message**:
+  - Refers to one **Reservation**.
+  - Refers to one **User**.
+- **Review**:
+  - Refers to one **Tourist Offer**.
+
+### Stage 3: Configuration of Database Context
+
+*(File: `ESITContext` in the `Models` folder)*
+
+- Inheritance from the `DbContext` class.
+- Defined `DbSet` properties for each data model class.
+- Configured the connection to the database.
+- Custom settings for classes and relationships were defined using the `OnModelCreating()` method.
+
+### Stage 4: Migrations
+
+- Migrations were performed to create the database schema according to the data model.
+
+---
+
+## Technologies
+
+- **Programming Language**: C#
+- **Framework**: .NET Framework
 - **ORM**: Entity Framework
-- **Baza Danych**: Microsoft SQL Server
+- **Database**: Microsoft SQL Server
+
+---
+
+## Environment Setup
+
+1. Ensure that **.NET SDK** and **SQL Server** are installed.
+2. Configure the database connection in the configuration file (e.g., `appsettings.json` or `Web.config`), adjusting the settings to your environment.
+
+---
+
+## Migrations
+
+To create the database based on the models, perform migrations:
+
+### In the NuGet Package Manager Console:
+
+```powershell
+Update-Database
