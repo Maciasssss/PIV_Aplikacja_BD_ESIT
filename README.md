@@ -1,40 +1,92 @@
 # PIV_Aplikacja_BD_ESIT
-ESIT = Elektroniczny System Informacji Turystycznej
-![Opis alternatywny](/Schemat_Bazy_Danych_ESIT.png)
-## OPIS PROGRAMU
-Etap 1.(folder-Models)Zdefiniowane zostały poszczególne klasy opisujące kolumny w tabellach.:
 
--Oferta Turystyczna
+**ESIT** - Elektroniczny System Informacji Turystycznej
 
--Użytkownicy
+## Spis Treści
 
--Wiadomości
+- [Opis Programu](#opis-programu)
+- [Funkcjonalności](#funkcjonalności)
+- [Model Danych](#model-danych)
+  - [Etap 1: Definicja Klas Modeli](#etap-1-definicja-klas-modeli)
+  - [Etap 1.2: Nadanie Właściwości](#etap-12-nadanie-właściwości)
+  - [Etap 2: Definiowanie Relacji Między Tabelami](#etap-2-definiowanie-relacji-między-tabelami)
+  - [Etap 3: Konfiguracja Kontekstu Bazy Danych](#etap-3-konfiguracja-kontekstu-bazy-danych)
+  - [Etap 4: Migracje](#etap-4-migracje)
+- [Technologie](#technologie)
+- [Kontakt](#kontakt)
 
--Opinie
+---
 
--Rezerwacja
+## Opis Programu
 
-Etap 1.2 Nadane zostały właściwości dla każdej z wartości(np:klucz lub czy wartość jest wymagana)
+Elektroniczny System Informacji Turystycznej (ESIT) to aplikacja umożliwiająca zarządzanie ofertami turystycznymi, rezerwacjami, opiniami oraz komunikację między użytkownikami a administracją. Projekt skupia się na efektywnym modelowaniu danych oraz zarządzaniu relacjami między nimi.
 
-Etap 2.Zdefiniowanie relacji między tabelami
+---
 
-Każda Oferta turystyczna może mieć wiele rezerwacji oraz wiele opini.
+## Funkcjonalności
 
-Każda rezerwacja może odnosić się tylko do jedenj oferty turystycznej oraz do jednego użytkownika,
+- **Zarządzanie Ofertami Turystycznymi**: Dodawanie, edycja i usuwanie ofert.
+- **Rezerwacje**: Użytkownicy mogą dokonywać rezerwacji wybranych ofert.
+- **Opinie**: Możliwość dodawania opinii do ofert turystycznych.
+- **Wiadomości**: Komunikacja między użytkownikami a administracją w kontekście rezerwacji.
+- **Zarządzanie Użytkownikami**: Rejestracja, logowanie oraz edycja profilu.
 
-Każdy Użytkownik może złożyć wiele rezerwacji oraz wysłac wiele wiadomości,
+---
 
-Każda wiadomość odnosi się do jednej rezerwacji oraz jednego użytkownika,
+## Model Danych
 
-Każda opinia tyczy się jednej oferty turystycznej.
+### Etap 1: Definicja Klas Modeli
 
-Etap 3.(folder-Models->ESITContext)Zdefiniowany został kontekst dziędziczący po klasie DbContext
+*(Folder: `Models`)*
 
--określono właściwości DbSet dla każdej klasy(modelu danych)
+Zdefiniowano klasy reprezentujące tabele w bazie danych:
 
--Skonfigurowane połączenie do bazy danych
+- **OfertaTurystyczna**
+- **Użytkownicy**
+- **Wiadomości**
+- **Opinie**
+- **Rezerwacja**
 
--Za pomocą metody OnModelCreating() zdefiniowane zostały niestandardowe ustawienia dla poszczególnych klas i relacji
+### Etap 1.2: Nadanie Właściwości
 
-Etap 4.Przeprowadzono migracje w celu utworzenia schematu bazy danych
-  
+- Określono klucze główne i obce.
+- Ustawiono wymagalność poszczególnych pól (np. czy wartość jest wymagana).
+
+### Etap 2: Definiowanie Relacji Między Tabelami
+
+- **Oferta Turystyczna**:
+  - Może mieć wiele **Rezerwacji**.
+  - Może mieć wiele **Opinii**.
+- **Rezerwacja**:
+  - Odnosi się do jednej **Oferty Turystycznej**.
+  - Odnosi się do jednego **Użytkownika**.
+- **Użytkownik**:
+  - Może złożyć wiele **Rezerwacji**.
+  - Może wysłać wiele **Wiadomości**.
+- **Wiadomość**:
+  - Odnosi się do jednej **Rezerwacji**.
+  - Odnosi się do jednego **Użytkownika**.
+- **Opinia**:
+  - Dotyczy jednej **Oferty Turystycznej**.
+
+### Etap 3: Konfiguracja Kontekstu Bazy Danych
+
+*(Plik: `ESITContext` w folderze `Models`)*
+
+- Dziedziczenie po klasie `DbContext`.
+- Określono właściwości `DbSet` dla każdej klasy modelu danych.
+- Skonfigurowano połączenie z bazą danych.
+- W metodzie `OnModelCreating()` zdefiniowano niestandardowe ustawienia dla klas i relacji.
+
+### Etap 4: Migracje
+
+- Przeprowadzono migracje w celu utworzenia schematu bazy danych zgodnego z modelem danych.
+
+---
+
+## Technologie
+
+- **Język Programowania**: C#
+- **Framework**: .NET Framework 
+- **ORM**: Entity Framework
+- **Baza Danych**: Microsoft SQL Server
