@@ -37,8 +37,6 @@ Elektroniczny System Informacji Turystycznej (ESIT) to aplikacja umożliwiająca
 
 ### Etap 1: Definicja Klas Modeli
 
-*(Folder: `Models`)*
-
 Zdefiniowano klasy reprezentujące tabele w bazie danych:
 
 - **OfertaTurystyczna**
